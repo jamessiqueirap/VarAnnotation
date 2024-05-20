@@ -12,18 +12,22 @@ O Dockerfile incluído neste repositório permite a criação de um ambiente iso
 - **Saída em Formato TSV:** As variantes filtradas e anotadas são salvas em um arquivo TSV (tab-separated values), facilitando sua análise posterior.
 
 ## Como Usar:
+1. **Download dos arquivos:**
+   
+- Baixe a pasta [my_project](my_project) e todos seus arquivos e navegue até ela utilizando o terminal
 
-1. **Construção da imagem:**
-- Para construção da imagem utilize o comando abaixo dentro da pasta baixada
+2. **Construção da imagem:**
+- Já com o Docker instalado, para construção da imagem utilize o comando abaixo, dentro da pasta my_project
+  
    ```
-     sudo docker build -t variantsearch .
+     sudo docker build -t VarAnotation .
    ```
-2. **Execução:**
+3. **Execução:**
 
 Para executar a aplicação, basta substituir as variáveis `input` e `output` pelos nomes dos seus arquivos, respectivamente, no seguinte comando Docker:
 
 ```bash
-sudo docker run -it -v $(pwd):/input variantsearch -input /input/<arquivo.vcf> -output /input/<saida.tsv> -dp <valor de dp>
+sudo docker run -it -v $(pwd):/input VarAnotation -input /input/<arquivo.vcf> -output /input/<saida.tsv> -dp <valor de dp>
 ```
 
 Certifique-se de fornecer o caminho completo para o arquivo VCF de entrada e para o arquivo de saída desejado. O parâmetro `-dp` deve ser substituído pelo valor mínimo desejado para a profundidade. 
@@ -31,16 +35,14 @@ Este comando monta o diretório atual (`$(pwd)`) dentro do contêiner Docker, pe
 
 --- 
 
-Espero que isso esteja mais claro e informativo!
-
-3. **Argumentos:**
+4. **Argumentos:**
    - `-input`: Caminho para o arquivo vcf de entrada.
    - `-output`: Nome do arquivo de saída no formato tsv contendo as variantes filtradas e anotadas.
    - `-dp`: Valor mínimo de profundidade para filtragem das variantes.
    - `-af`: Valor mínimo de frequência para filtragem das variantes (padrão: 0.5).
    - `-db`: Banco de dados para a anotação da frequência populacional (opcional).
 
-4. **Saída:**
+5. **Saída:**
    - O arquivo TSV resultante conterá as variantes filtradas e anotadas.
    
 Esta aplicação foi desenvolvida para simplificar o processo de análise de variantes genéticas em estudos genômicos. 
