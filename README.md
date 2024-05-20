@@ -19,19 +19,28 @@ O Dockerfile incluído neste repositório permite a criação de um ambiente iso
      sudo docker build -t variantsearch .
    ```
 2. **Execução:**
-- Para executar a aplicação basta substituir as variáveis input e output pelos nomes dos seus arquivos, respectivamente, no comando abaixo:
-     ```
-     sudo docker run -it -v $(pwd):/input variantsearch -input /input/<arquivo.vcf> -output /input/<saida.tsv> -dp <valor de dp>
-     ```
 
-5. **Argumentos:**
+Para executar a aplicação, basta substituir as variáveis `input` e `output` pelos nomes dos seus arquivos, respectivamente, no seguinte comando Docker:
+
+```bash
+sudo docker run -it -v $(pwd):/input variantsearch -input /input/<arquivo.vcf> -output /input/<saida.tsv> -dp <valor de dp>
+```
+
+Certifique-se de fornecer o caminho completo para o arquivo VCF de entrada e para o arquivo de saída desejado. O parâmetro `-dp` deve ser substituído pelo valor mínimo desejado para a profundidade. 
+Este comando monta o diretório atual (`$(pwd)`) dentro do contêiner Docker, permitindo que você acesse facilmente os seus arquivos de entrada e saída.
+
+--- 
+
+Espero que isso esteja mais claro e informativo!
+
+3. **Argumentos:**
    - `-input`: Caminho para o arquivo vcf de entrada.
    - `-output`: Nome do arquivo de saída no formato tsv contendo as variantes filtradas e anotadas.
    - `-dp`: Valor mínimo de profundidade para filtragem das variantes.
    - `-af`: Valor mínimo de frequência para filtragem das variantes (padrão: 0.5).
    - `-db`: Banco de dados para a anotação da frequência populacional (opcional).
 
-6. **Saída:**
+4. **Saída:**
    - O arquivo TSV resultante conterá as variantes filtradas e anotadas.
    
 Esta aplicação foi desenvolvida para simplificar o processo de análise de variantes genéticas em estudos genômicos. 
