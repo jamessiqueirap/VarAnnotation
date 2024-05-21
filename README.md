@@ -14,15 +14,17 @@ O Dockerfile incluído neste repositório permite a criação de um ambiente iso
 ## Como Usar:
 1. **Download dos arquivos:**
    
-- Baixe a pasta [my_project](my_project) e todos seus arquivos e navegue até ela utilizando o terminal
+   - Baixe a pasta [my_project](my_project) e todos os seus arquivos. Navegue até ela utilizando o terminal.
 
 2. **Construção da imagem:**
-- Já com o Docker instalado, para construção da imagem utilize o comando abaixo, dentro da pasta my_project
-  
+   
+   - Certifique-se de ter o Docker instalado. Para construir a imagem, utilize o seguinte comando dentro da pasta my_project:
+   
    ```
-     sudo docker build -t VarAnotation .
+   sudo docker build -t VarAnnotation .
    ```
-3. **Execução:**
+
+4. **Execução:**
 
 Para executar a aplicação, basta substituir as variáveis `input` e `output` pelos nomes dos seus arquivos, respectivamente, no seguinte comando Docker:
 
