@@ -38,34 +38,52 @@ class annotationvcf:
                 dbsnp_ids.append(rsids.data['esearchresult']['idlist'][0])
             except:
                 pass
-
+        
         tmp = vcf[vcf.ID != '.']
         l=list(tmp.ID)
         dbsnp_ids.extend(l)
         #del tmp
+        
+        block_size = 5000
+        id_blocks = [dbsnp_ids[i:i+block_size] for i in range(0, len(dbsnp_ids), block_size)]
 
-        #Anota os ids com base no banco
-        result = entrez_api.fetch(dbsnp_ids, max_results=10_000, ignore_max_results_limit=True, database='snp')
+        # Inicializando dicionários para armazenar todos os resultados
+        gene_names = {}
+        gene_ids = {}
+
 
         namespaces = {'ns0': 'https://www.ncbi.nlm.nih.gov/SNP/docsum'}
         geneidspaces = {'ns0': 'https://www.ncbi.nlm.nih.gov/SNP/docsum'}
-        
-        #identifica os genes associados as variantes
-        gene_names = {
-            'rs' + document_summary.get('uid'): [
-                element.text
-                for element in document_summary.findall('.//ns0:GENE_E/ns0:NAME', namespaces)
-            ]
-            for document_summary in result.data
-        }
 
-        gene_ids = {
-            'rs' + document_summary.get('uid'): [
-                element.text
-                for element in document_summary.findall('.//ns0:GENE_E/ns0:GENE_ID', geneidspaces)
-            ]
-            for document_summary in result.data
-        }
+        # Iterando sobre os blocos de IDs
+        for block in id_blocks:
+            # Chamando a API com o bloco atual de IDs
+            result = entrez_api.fetch(block, max_results=block_size, ignore_max_results_limit=True, database='snp')
+            
+            # Extraindo gene_names e gene_ids para o bloco atual
+            gene_ns = {
+                'rs' + document_summary.get('uid'): [
+                    element.text
+                    for element in document_summary.findall('.//ns0:GENE_E/ns0:NAME', namespaces)
+                ]
+                for document_summary in result.data
+            }
+            gene_names.update(gene_ns)
+
+            gene_is = {
+                'rs' + document_summary.get('uid'): [
+                    element.text
+                    for element in document_summary.findall('.//ns0:GENE_E/ns0:GENE_ID', geneidspaces)
+                ]
+                for document_summary in result.data
+            }
+            gene_ids.update(gene_is)
+
+        result = (
+            entrez_api
+            .in_batches_of(1_000)
+            .fetch(dbsnp_ids, max_results=5_000, database='snp')
+        )
 
         toremove = [ i for i in gene_names.keys() if gene_names[i] == [] ]
         _ = [ gene_names.pop(i) for i in toremove ]
