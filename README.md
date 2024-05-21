@@ -28,7 +28,7 @@ O Dockerfile incluído neste repositório permite a criação de um ambiente iso
 
 Para executar a aplicação, basta substituir as variáveis `input` e `output` pelos nomes dos seus arquivos, respectivamente, no seguinte comando Docker:
 
-```bash
+```
 sudo docker run -it -v $(pwd):/input varannotation -input /input/<arquivo.vcf> -output /input/<saida.tsv> -dp <valor de dp>
 ```
 
