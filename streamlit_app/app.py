@@ -4,7 +4,7 @@ from annotation import annotationvcf
 import os
 
 def main():
-    st.title("Filtragem e Anotação de Variantes VCF")
+    st.title("Filtragem e Anotação de Variantes")
 
     # Entrada do usuário para o arquivo VCF
     vcf_file = st.file_uploader("Escolha um arquivo VCF", type="vcf")
