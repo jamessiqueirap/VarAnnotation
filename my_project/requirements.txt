@@ -1,5 +1,0 @@
-pandas==2.2.0
-easy-entrez
-easy-entrez[with_progress_bars]
-easy-entrez[with_parsing_utils]
-argparse
