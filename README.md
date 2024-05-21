@@ -12,11 +12,11 @@ O Dockerfile incluído neste repositório permite a criação de um ambiente iso
 - **Saída em Formato TSV:** As variantes filtradas e anotadas são salvas em um arquivo TSV (tab-separated values), facilitando sua análise posterior.
 
 ### Como Usar:
-1. **Download dos arquivos:**
+1. **Baixe o repositório:** [![Baixe](https://img.shields.io/badge/Download-Repo-green)](https://github.com/jamessiqueirap/VarAnnotation/archive/refs/heads/main.zip)
    
-   - Baixe a pasta [docker_image](docker_image) e todos os seus arquivos. Navegue até ela utilizando o terminal.
+   - Descompacte os arquivos e navegue até a pasta `docker_image`, usando o terminal.
 
-2. **Construção da imagem:**
+3. **Construção da imagem:**
    
    - Certifique-se de ter o Docker instalado. Para construir a imagem, utilize o seguinte comando dentro da pasta my_project:
    
@@ -24,7 +24,7 @@ O Dockerfile incluído neste repositório permite a criação de um ambiente iso
    sudo docker build -t varannotation .
    ```
 
-3. **Execução:**
+4. **Execução:**
 
 Para executar a aplicação, basta substituir as variáveis `input` e `output` pelos nomes dos seus arquivos, respectivamente, no seguinte comando Docker:
 
