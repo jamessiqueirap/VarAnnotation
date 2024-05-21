@@ -20,9 +20,9 @@ O Dockerfile incluído neste repositório permite a criação de um ambiente iso
    
    - Certifique-se de ter o Docker instalado. Para construir a imagem, utilize o seguinte comando dentro da pasta my_project:
    
-   ```
-   sudo docker build -t varannotation .
-   ```
+```
+sudo docker build -t varannotation .
+ ```
 
 4. **Execução:**
 
