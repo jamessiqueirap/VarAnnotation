@@ -21,7 +21,7 @@ O Dockerfile incluído neste repositório permite a criação de um ambiente iso
    - Certifique-se de ter o Docker instalado. Para construir a imagem, utilize o seguinte comando dentro da pasta my_project:
    
    ```
-   sudo docker build -t VarAnnotation .
+   sudo docker build -t varannotation .
    ```
 
 4. **Execução:**
@@ -29,7 +29,7 @@ O Dockerfile incluído neste repositório permite a criação de um ambiente iso
 Para executar a aplicação, basta substituir as variáveis `input` e `output` pelos nomes dos seus arquivos, respectivamente, no seguinte comando Docker:
 
 ```bash
-sudo docker run -it -v $(pwd):/input VarAnotation -input /input/<arquivo.vcf> -output /input/<saida.tsv> -dp <valor de dp>
+sudo docker run -it -v $(pwd):/input varannotation -input /input/<arquivo.vcf> -output /input/<saida.tsv> -dp <valor de dp>
 ```
 
 Certifique-se de fornecer o caminho completo para o arquivo VCF de entrada e para o arquivo de saída desejado. O parâmetro `-dp` deve ser substituído pelo valor mínimo desejado para a profundidade. 
